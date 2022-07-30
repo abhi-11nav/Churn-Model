@@ -7,11 +7,10 @@ Created on Sun Jul 17 13:37:45 2022
 """
 from flask import Flask, render_template, request
 import pickle
-
+import numpy as np 
 app = Flask(__name__, template_folder="template")
 
 model = pickle.load(open("model.pkl", "rb"))
-x
 
 @app.route("/", methods=["GET"])
 def home():
@@ -26,11 +25,11 @@ def predict():
 
         Geography = request.form["Geography"]
         if Geography == "France":
-            Geogrpahy = 5014
+            Geography = 5014
         elif Geography == "Spain":
-            Geogrpahy = 2477
+            Geography = 2477
         else:
-            Grography = 2509
+            Geography = 2509
 
         Gender = request.form["Gender"]
         if Gender == "Female":
@@ -47,7 +46,7 @@ def predict():
         Number_of_products = int(request.form["no_of_products"])
 
         Credit_card = request.form["Credit_card"]
-        if Credti_card == "YES":
+        if Credit_card == "YES":
             Credit_card = 1
         else:
             Credit_card = 0
@@ -62,12 +61,13 @@ def predict():
 
         features_input = np.array(
             [Credit_Score, Geography, Gender, Age, Tenure, Balance, Number_of_products, Credit_card, Active_member,
-             Estimated_salary])
-        features_input = features_input.reshape(1, -1)
-
+             Estimated_salary]).reshape(1,-1)
+      
+        
+        
         prediction = model.predict(features_input)
 
-        if features_input > 0:
+        if prediction > 0.5:
             return render_template('/index.html', prediction_text="CUSTOMER EXITED")
         else:
             return render_template('/index.html', prediction_text="CUSTOMER REAMINED")
