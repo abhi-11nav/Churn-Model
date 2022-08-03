@@ -1,0 +1,92 @@
+ <!DOCTYPE HTML>
+<html lang='en'>
+
+<head>
+	<meta charset = "UTF=8">
+	<title> CHURN MODEL </title>
+	<style type="text/css">
+		form{
+			margin-left: 600px;	
+		}
+		h1{
+			text-align: center;
+			background-color: lightgray;
+			padding: 0px 20px 0px;
+		}
+		label{
+			padding-bottom: 20px;
+		}
+		.features{
+			padding-bottom: 20px;
+			margin-bottom: 20px;
+		}
+
+		button{
+			padding: 10px;
+			font-size: 15px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="login">
+		<h1> CHURN MODEL  </h1>
+		<form action="{{ url_for('predict')}}"method="post">
+
+    		<input class="features" type="number" name="CreditScore" placeholder="CreditScore" required="required"/><br>
+
+        	<input class="features" type="number" name="Age" placeholder="Age" required="required"/><br>
+
+			<input class="features" type="number" name="Tenure" placeholder="Tenure" required="required"/><br>
+
+			<input class="features" type="number" name="no_of_products" placeholder="Number Of Products" required="required"/><br>
+
+			<input class="features" type="number" inputmode="decimal" name="estimated_salary" placeholder="Estimated_Salary" required="required"/><br>
+
+			<input class="features" type="number" inputmode="decimal" name="Balance" placeholder="Balance" required="required"/><br>
+
+			<label for="Geography">Geography</label>
+			<select class="features" name="Geography" id="Geography" required="required">
+			<option value="Spain">SPAIN</option>
+			<option value="France">FRANCE</option>
+			<option value="Germany">GERMANY</option>
+			</select>
+			<br>
+
+			<label for="Gender">GENDER</label>
+			<select class="features" name="Gender" id="Gender" required="required">
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+			</select>
+			<br>
+
+			<label for="Credit_card">Credit_card</label>
+			<select class="features" name="Credit_card" id="Credit_card" required="required">
+			<option value="YES">YES</option>
+			<option value="NO">NO</option>
+			</select>
+			<br>
+
+			<label for="Active_member">Active Member</label>
+			<select class="features" name="Active_member" id="Active_member" required="required">
+			<option value="YES">Yes</option>
+			<option value="NO">No</option>
+			</select>
+			<br>
+
+        	<button type="SUBMIT" class="btn btn-primary btn-block btn-large">predict</button>
+    	</form>
+
+  		 <br>
+   		<br>
+   		
+   		<div id="prediction_text">
+   		{{ prediction_text }}
+   		</div>
+
+ 	</div>
+
+</body>
+</html> 
+</body>
