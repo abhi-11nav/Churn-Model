@@ -1,7 +1,6 @@
 Flask==1.1.4
 Jinja2==2.11.3
 keras==2.8.0
-Keras-Preprocessing==1.1.2
 MarkupSafe==2.0.1
 matplotlib==3.2.2
 numpy==1.21.6
